@@ -1,0 +1,7 @@
+<form method="POST">
+    {% csrf_token %}
+    {{object.title}}<br>
+    {{object.director}}<br>
+    Do you delete it?<br>
+    <button type="submit">OK</button>
+</form>

@@ -1,0 +1,12 @@
+<h1>Index</h1>
+{% if movie_list %}
+    {% for movie in movie_list %}
+    <li>
+        <a href="{% url 'myapp:movie_detail' movie.id %}">{{ movie.title }}</a> {{ movie.director }} {{ movie.watch_date }}
+    </li>
+    {% endfor %}
+{% endif %}
+<br>
+<a href="{% url 'myapp:registerdirector' %}">Register Director</a><br>
+<a href="{% url 'myapp:registermovie' %}">Register Movie</a><br>
+<a href="{% url 'myapp:writinglog' %}">Writing Log</a>
