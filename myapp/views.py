@@ -6,7 +6,7 @@ from myapp.form import DirectorForm, MovieForm, LogForm
 
 
 
-'''
+
 class IndexView(generic.ListView):
     template_name = 'myapp/index.html'
     context_object_name = 'movie_list'
@@ -88,6 +88,7 @@ def writinglog(request):
         form = LogForm()
         return render(request, 'myapp/register.html', {'form': form})
 
+'''
 def writingthismovielog(request, movie_id):
     obj = get_object_or_404(Movie, id=movie_id)
     form = LogForm({'movie':obj})
@@ -99,7 +100,7 @@ def writingthismovielog(request, movie_id):
             return redirect('myapp:movie_detail', pk=l.movie.pk)
     else:
         return render(request, 'myapp/register.html', {'form': form})
-
+'''
 
 '''
 
@@ -153,3 +154,4 @@ def deletemovie(request, pk):
         return redirect('myapp:index')
     context = {'obj':obj}
     return render(request, "myapp/delete.html", context)
+'''
