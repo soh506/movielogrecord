@@ -1,33 +1,57 @@
-# プルリクなどの一連の流れを経験する
-## 2. issueを立てる（これが重要）
-GitHubのIssuesタブで「やること」を先に書く。例えば：
+# movielogrecord
 
-- #1 READMEを追加する
-- #2 映画にジャンルフィールドを追加する
-- #3 一覧ページに検索機能をつける
+Django の仕組みを学ぶことを目的に作った映画視聴記録アプリ。  
+観た映画のタイトル・監督・視聴日・感想を記録・管理できる。
 
-## 3. ブランチを切って作業する
-- bashgit checkout -b feature/add-readme   # issue #1 の作業
-- 変更する
-- git add .
-- git commit -m "docs: READMEを追加 #1"
-- git push origin feature/add-readme
+## 機能
 
+- 映画視聴一覧の表示
+- 映画詳細（タイトル・監督・視聴日・感想）の表示
+- 映画情報の登録・編集・削除（CRUD）
 
-## 4. GitHubでPRを作る
-- pushするとGitHubに「Compare & pull request」ボタンが出る。説明を書いてPRを作成。
+## 技術スタック
 
+- Python 3.8.2
+- Django 3.0.2
+- SQLite3
 
-## 5. マージしてブランチを消す
-- bashgit checkout main
-- git pull
-- git branch -d feature/add-readme
+## ディレクトリ構成
+.
+├── config/          # プロジェクト設定
+│   ├── settings.py
+│   └── urls.py
+├── myapp/           # アプリケーション本体
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   └── forms.py
+├── templates/myapp/ # テンプレートファイル
+├── manage.py
+└── .gitignore
+## セットアップ
 
-最初にやる改善ネタ（順番通りに）
+```bash
+git clone https://github.com/soh506/movielogrecord.git
+cd movielogrecord
 
-- README追加——一番簡単、フロー体験だけが目的
-- requirements.txt追加——pip freeze > requirements.txt
-- モデルにフィールド追加——例：映画にrating（評価）を追加してマイグレーション
-- テストを1本書く——python manage.py testが通る状態にする
+python -m venv myenv
+source myenv/bin/activate
 
-これを4回繰り返すだけで、「issue → branch → commit → PR → merge」の筋肉がつきます。やってみますか？
+pip install django
+
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+ブラウザで `http://127.0.0.1:8000` を開く。
+
+## 参考記事
+
+作成過程を Qiita にまとめています。
+
+- [Django 初心者が簡単なアプリをつくる1](https://qiita.com/soh506/items/4035650d2ea19e82d8fd)
+- [Django 初心者が簡単なアプリをつくる2](https://qiita.com/soh506/items/98239c6b1c6fbf737429)
+- [Django 初心者が簡単なアプリをつくる3](https://qiita.com/soh506/items/34cef1d386e1aa1b4496)
+- [Django 初心者が簡単なアプリをつくる4](https://qiita.com/soh506/items/ac9b2914f64839edac3b)
+- [Django 初心者が簡単なアプリをつくる5](https://qiita.com/soh506/items/fc6b00ba728ac41fa3d1)
